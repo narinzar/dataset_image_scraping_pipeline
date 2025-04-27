@@ -42,12 +42,26 @@ def upload_to_huggingface(source_dir, dataset_name, batch_size=500, version_name
     api = HfApi(token=hf_token)
     
     # Create dataset repo if it doesn't exist
+    # Try to determine if the repo exists
     try:
         api.repo_info(repo_id=dataset_name, repo_type="dataset")
         logger.info(f"Dataset {dataset_name} already exists.")
-    except Exception:
-        logger.info(f"Creating new dataset: {dataset_name}")
-        create_repo(dataset_name, repo_type="dataset", token=hf_token)
+    except Exception as e:
+        # Check if the error indicates the repo doesn't exist OR if there's a conflict
+        if "Repository Not Found" in str(e) and "409" not in str(e):
+            logger.info(f"Creating new dataset: {dataset_name}")
+            try:
+                create_repo(dataset_name, repo_type="dataset", token=hf_token)
+            except Exception as create_err:
+                if "You already created this dataset repo" in str(create_err):
+                    logger.info(f"Dataset {dataset_name} already exists (verified by error message).")
+                else:
+                    logger.error(f"Error creating dataset: {str(create_err)}")
+                    return False
+        else:
+            # If it's a different error, log it and continue
+            logger.warning(f"Error checking dataset existence: {str(e)}")
+            logger.info("Attempting to proceed with upload anyway...")
     
     # Get list of image files
     image_files = []
