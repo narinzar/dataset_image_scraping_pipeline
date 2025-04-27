@@ -1,0 +1,25 @@
+# Hugging Face API Token
+# Get this from your HuggingFace account: https://huggingface.co/settings/tokens
+HF_TOKEN=your_huggingface_token_here
+
+# Optional Configuration
+# Default output directory for images
+OUTPUT_DIR=water_damage_images
+
+# Default audit directory for deduplication
+AUDIT_DIR=water_damage_images_audit
+
+# Default target count for image scraping
+TARGET_COUNT=10000
+
+# Default maximum images per search term
+MAX_PER_TERM=100
+
+# Default session duration in seconds (2 hours)
+SESSION_DURATION=7200
+
+# Default dataset name for Hugging Face upload
+HF_DATASET_NAME=your-username/water-damage-dataset
+
+# Default batch size for uploads
+BATCH_SIZE=500
