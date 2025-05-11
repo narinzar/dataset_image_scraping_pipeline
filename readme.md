@@ -106,6 +106,7 @@ python deduplicate.py source_dir --output output_dir
 
 ```bash
 python hf_uploader.py source_dir --dataset-name username/dataset-name --batch-size 500
+python hf_uploader.py water_damage_images_audit\consolidated_files --dataset-name username/dataset-name --batch-size 500
 ```
 
 ## Project Structure
