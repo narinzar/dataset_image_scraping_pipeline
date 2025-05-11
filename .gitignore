@@ -26,6 +26,11 @@ venv/
 env/
 ENV/
 
+#scraped images, except for the consolidated_files
+water_damage_images/
+water_damage_images_audit/
+!water_damage_images_audit/consolidated_files/
+
 # Environment Variables
 .env
 

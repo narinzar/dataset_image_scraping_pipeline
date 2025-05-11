@@ -4,7 +4,7 @@ HF_TOKEN=your_huggingface_token_here
 
 # Optional Configuration
 # Default output directory for images
-OUTPUT_DIR=water_damage_images
+OUTPUT_DIR=water_damage_images_raw
 
 # Default audit directory for deduplication
 AUDIT_DIR=water_damage_images_audit
